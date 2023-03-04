@@ -1,13 +1,130 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap');
+
+body{
+  background-color: #f5eeee;
+  font-family: 'Nunito';
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+
+
+.carousel {
+  height: 400px;
+  margin: 0 200px;
+}
+
+.carousel-inner img {
+  height: 400px !important;
+  margin: 0 auto;
+  border-radius: 30px;
+}
+
+.carousel-indicators li {
+  border-color: #000;
+}
+.carousel-indicators .active {
+  background-color: #000;
+}
+
+.nav-item {
+  font-size: 25px;
+}
+
+.navbar-brand {
+  font-size: 30px;
+}
+
+.circle {
+  background-color: orange;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  bottom: 35px;
+  left: 130px;
+  border-radius: 5px;
+}
+
+.price{
+  font-size: 10px;
+  position: absolute;
+  right: 5px;
+  top: 2px;
+  color: white;
+}
+
+.navbar {
+  height: 70px;
+}
+
+.item-cart {
+  margin: 0 10px;
+}
+
+.card-text {
+  font-weight: 600;
+}
+
+.category {
+  background-color: rgb(172, 172, 242);
+  width: 130px;
+  border-radius: 10px;
+}
+
+.category p {
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.item-price {
+  font-weight: 800;
+  font-size: 20px;
+}
+
+.cart-container {
+  background-color: orange;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.button-cart {
+  border: none;
+  background-color: white;
+}
+
+.card {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.fav-button {
+  border: none;
+  background-color: white;
+  width: 15px;
+  font-size: 20px;
+}
+
+.fav-button:hover {
+  color: red;
+}
+
+.fav{
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 18px;
+  margin-top: 10px;
+}
+
+.card {
+  height: 520px;
 }

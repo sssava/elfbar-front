@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import elf from './images/elfbar-preview.png'
+import elf1 from './images/elfbarpreview1.jpg'
+import pink from './images/odnorazovye-podelf-bar-1500-pink-lemonade-81061751468247.jpg'
+import Navbar from "./components/Navbar";
+import Carousel from "./components/Carousel";
+import Card from "./components/Card";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <Navbar/>
+        <Carousel/>
+        <Card/>
+      </div>
   );
 }
 
 export default App;
+
