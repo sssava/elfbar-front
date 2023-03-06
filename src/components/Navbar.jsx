@@ -1,6 +1,25 @@
-import React from 'react';
+import React, {useState, useCallback} from 'react';
+import {useDispatch} from "react-redux";
+import debounce from 'lodash.debounce'
+
+import {setSearchValue} from "../redux/slices/filterSlice";
 
 const Navbar = () => {
+    const [value, setValue] = useState('')
+    const dispatch = useDispatch()
+
+    const updateSearchValue = useCallback(
+        debounce((str) => {
+            dispatch(setSearchValue(str))
+        }, 500), []
+    )
+
+    const onChangeInput = (event) => {
+        setValue(event.target.value)
+        updateSearchValue(event.target.value)
+    }
+
+
     return (
         <div>
             <nav className="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
@@ -22,7 +41,7 @@ const Navbar = () => {
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={value} onChange={onChangeInput}/>
                             <button className="btn btn-outline-success" type="submit">Search</button>
                         </form>
                     </div>

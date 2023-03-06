@@ -5,11 +5,13 @@ import Card from "./components/Card";
 
 import {useDispatch, useSelector} from "react-redux";
 import {fetchElfbars, selectCardData} from "./redux/slices/cardSlice";
+import {selectSort} from "./redux/slices/filterSlice";
 import Skeleton from "./components/Skeleton";
 
 function App() {
     const dispatch = useDispatch()
     const {items, status} = useSelector(selectCardData)
+    const {searchValue} = useSelector(selectSort)
 
     useEffect(() => {
         async function fetchData(){
@@ -19,7 +21,10 @@ function App() {
         fetchData()
     }, [])
 
-    const elfbars = items.map(obj => <Card key={obj.id} {...obj} />)
+    const elfbars = items.filter(obj => {
+        return obj.name.toLowerCase().includes(searchValue.toLowerCase())
+    }).map(obj => <Card key={obj.id} {...obj} />)
+
 
   return (
       <div className="App">
