@@ -5,6 +5,7 @@ import Card from "./components/Card";
 
 import {useDispatch, useSelector} from "react-redux";
 import {fetchElfbars, selectCardData} from "./redux/slices/cardSlice";
+import Skeleton from "./components/Skeleton";
 
 function App() {
     const dispatch = useDispatch()
@@ -27,7 +28,11 @@ function App() {
         <div>
             <div className="container mb-5">
                 <div className="row">
-                    {elfbars}
+                    {
+                        status === 'loading'
+                        ? [...new Array(8)].map((item, index) => <Skeleton key={index}/>)
+                        :elfbars
+                    }
                 </div>
             </div>
         </div>

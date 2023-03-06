@@ -5,6 +5,9 @@ const Card = ({id, taste, name, price, charge, image}) => {
     return (
         <div className="col-3">
             <div className="card" style={{width: 300}}>
+                <div className="d-flex fav">
+                    <button className="fav-button"><i className="fa-solid fa-heart"></i></button>
+                </div>
                 <img src={image} className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <p className="card-text">{name}</p>
