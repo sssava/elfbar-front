@@ -2,8 +2,9 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
 
-export const fetchElfbars = createAsyncThunk('elfbars/fetchElfbarsStatus', async () => {
-    const itemResp = await axios.get('http://127.0.0.1:8000/api/elfbar-list/')
+export const fetchElfbars = createAsyncThunk('elfbars/fetchElfbarsStatus', async (params) => {
+    const {ordering, charge} = params
+    const itemResp = await axios.get(`http://127.0.0.1:8000/api/elfbar-list/${ordering}${charge}`)
     return itemResp.data
 })
 

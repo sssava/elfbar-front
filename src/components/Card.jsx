@@ -12,7 +12,7 @@ const Card = ({id, taste, name, price, charge, image}) => {
                 <div className="card-body">
                     <p className="card-text">{name}</p>
                     <div className="category">
-                        <p>{taste.name}</p>
+                        <p>Elfbar {charge.name}</p>
                     </div>
                     <div className="item-cart d-flex justify-content-between">
                         <p className="item-price">{price} uah</p>

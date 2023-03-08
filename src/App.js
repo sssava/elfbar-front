@@ -7,19 +7,25 @@ import {useDispatch, useSelector} from "react-redux";
 import {fetchElfbars, selectCardData} from "./redux/slices/cardSlice";
 import {selectSort} from "./redux/slices/filterSlice";
 import Skeleton from "./components/Skeleton";
+import Sort from "./components/Sort";
 
 function App() {
     const dispatch = useDispatch()
     const {items, status} = useSelector(selectCardData)
-    const {searchValue} = useSelector(selectSort)
+    const {searchValue, sort} = useSelector(selectSort)
 
     useEffect(() => {
         async function fetchData(){
-            dispatch(fetchElfbars())
+            const ordering = sort.type === 'ordering' ? `?ordering=${sort.sortProperty}` : ''
+            const charge = sort.type === 'filter' ? `?charge=${sort.sortProperty}` : ''
+            dispatch(fetchElfbars({
+                ordering,
+                charge
+            }))
         }
 
         fetchData()
-    }, [])
+    }, [sort])
 
     const elfbars = items.filter(obj => {
         return obj.name.toLowerCase().includes(searchValue.toLowerCase())
@@ -28,8 +34,10 @@ function App() {
 
   return (
       <div className="App">
+          {console.log(sort)}
         <Navbar/>
         <Carousel/>
+        <Sort/>
         <div>
             <div className="container mb-5">
                 <div className="row">

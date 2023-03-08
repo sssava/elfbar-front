@@ -1,7 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    searchValue: ''
+    searchValue: '',
+    sort: {
+        name: 'Немає сортування',
+        sortProperty: '',
+        type: 'ordering'
+    }
 }
 
 const filterSlice = createSlice({
@@ -10,11 +15,14 @@ const filterSlice = createSlice({
     reducers: {
         setSearchValue(state, action){
             state.searchValue = action.payload
+        },
+        setSort(state, action){
+            state.sort = action.payload
         }
     }
 })
 
 export const selectSort = (state) => state.filter
-export const {setSearchValue} = filterSlice.actions
+export const {setSearchValue, setSort} = filterSlice.actions
 
 export default filterSlice.reducer
