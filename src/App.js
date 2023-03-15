@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import {Route, Routes} from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
+import FullElfbar from "./pages/FullElfbar";
 
 function App() {
 
@@ -10,6 +11,7 @@ function App() {
       <Routes>
           <Route path="/" element={<MainLayout />}>
               <Route path="" element={<Home />}/>
+              <Route path="elfbar/:slug" element={<FullElfbar />} />
           </Route>
       </Routes>
   );

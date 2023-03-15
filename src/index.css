@@ -195,3 +195,182 @@ ul, li {
   color: cornflowerblue;
   background: rgba(254, 95, 30, 0.05)
 }
+
+.elf-info {
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid rgb(157, 150, 150);
+  background-color: white;
+}
+
+.back {
+  width: 100px;
+  background-color: orange;
+  color: white;
+  border-radius: 10px;
+  border: 1px solid rgb(134, 121, 121);
+  margin: 0 0 25px 600px;
+}
+
+
+.info-img {
+  width: 700px;
+  height: 680px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0 0 100px;
+}
+
+.info h3 {
+  width: 600px;
+  font-weight: 600;
+}
+
+.cost {
+  font-size: 30px;
+  font-weight: 800;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.tastes span {
+  margin-right: 5px;
+}
+
+.taste_active {
+  background-color: orange;
+  padding: 7px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+
+.taste {
+  border: 1px solid rgb(106, 92, 92);
+  padding: 7px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.in_stock {
+  width: 130px;
+  background-color: rgb(187, 248, 187);
+  color: rgb(36, 201, 36);
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.not_in_stock {
+  width: 150px;
+  background-color: red;
+  color: white;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.in_cart {
+  display: flex;
+  flex-direction: row;
+}
+
+.in_cart__count {
+  padding: 12px;
+  border: 2px solid rgb(200, 197, 197);
+  width: 105px;
+  border-radius: 5px;
+}
+
+.in_cart__count input {
+  display: inline-block;
+  border: none;
+  max-width: 35px;
+  margin: 0;
+  appearance: none;
+  padding: 0;
+  text-align: center;
+}
+
+
+
+.add_to_cart {
+  margin-left: 20px;
+  background-color: orange;
+  color: white;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  border: none;
+}
+
+.add_to_cart:hover {
+  background-color: rgb(177, 120, 13);
+}
+
+.in_liked {
+  margin-top: 25px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.in_liked i {
+  color: orange;
+}
+
+.elf-description {
+  padding-top: 20px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.titles {
+  display: flex;
+  justify-content: center;
+}
+
+.desc_name {
+  margin-right: 7px;
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.desc_name:hover {
+  color: rgb(107, 95, 95);
+}
+
+.charact_name {
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.charact_name:hover {
+  color: rgb(107, 95, 95);
+}
+
+.active_name {
+  color: rgb(107, 95, 95);
+}
+
+.description {
+  padding: 60px;
+}
+
+.description p {
+  font-size: 14px;
+}
+
+.in_cart__count button {
+  border: none;
+  background-color: white;
+  font-size: 8px;
+}
