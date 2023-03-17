@@ -9,10 +9,18 @@ export const fetchFullElf = createAsyncThunk('fullElfbar/fetchFullStatus', async
 
 })
 
+export const fetchAddTastes = createAsyncThunk('additionalTastes', async (params) => {
+    const {charge} = params
+    const tastesResp = await axios.get(`http://127.0.0.1:8000/api/tastes/${charge}/`)
+    return tastesResp.data
+})
+
 const initialState = {
     elfbar: [],
     status: 'loading',
-    taste: 0
+    taste: 0,
+    additionalTastes: [],
+    statusTastes: 'loading'
 }
 
 const elfSlice = createSlice({
@@ -38,6 +46,18 @@ const elfSlice = createSlice({
             state.status = 'error'
             state.elfbar = []
             state.taste = 0
+        },
+        [fetchAddTastes.pending]: (state) => {
+            state.statusTastes = 'loading'
+            state.additionalTastes = []
+        },
+        [fetchAddTastes.fulfilled]: (state, action) => {
+            state.statusTastes = 'success'
+            state.additionalTastes = action.payload
+        },
+        [fetchAddTastes.rejected]: (state) => {
+            state.statusTastes = 'error'
+            state.additionalTastes = []
         }
     }
 })

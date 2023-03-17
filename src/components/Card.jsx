@@ -2,14 +2,14 @@ import React from 'react';
 import {Link} from "react-router-dom";
 
 
-const Card = ({id, taste, name, price, charge, image, slug}) => {
+const Card = ({id, taste, name, price, charge, image, slug,}) => {
     return (
         <div className="col-3">
             <div className="card" style={{width: 300}}>
                 <div className="d-flex fav">
                     <button className="fav-button"><i className="fa-solid fa-heart"></i></button>
                 </div>
-                <Link to={`elfbar/${slug}`}>
+                <Link to={`elfbar/${slug}/${charge}`}>
                     <img src={image} className="card-img-top" alt="..."/>
                 </Link>
                 <div className="card-body">

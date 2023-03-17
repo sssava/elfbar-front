@@ -1,16 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchFullElf, selectFullElf} from "../redux/slices/fullElfbarSlice";
+import {fetchFullElf, fetchAddTastes, selectFullElf} from "../redux/slices/fullElfbarSlice";
+import {Link} from "react-router-dom";
 
 
 const FullElfbar = () => {
 
     const [value, setValue] = useState(1)
+    const navigate = useNavigate()
 
-    const {slug} = useParams()
+    const {slug, charge} = useParams()
     const dispatch = useDispatch()
-    const {elfbar, status} = useSelector(selectFullElf)
+    const {elfbar, status, additionalTastes, statusTastes} = useSelector(selectFullElf)
 
 
     const onChangeClick = (event) => {
@@ -28,15 +30,23 @@ const FullElfbar = () => {
 
     }
 
+
     useEffect(() => {
         async function fetchData(){
             dispatch(fetchFullElf({
                 slug
             }))
+            dispatch((fetchAddTastes({
+                charge
+            })))
         }
 
         fetchData()
-    }, [slug])
+
+
+    }, [slug, charge])
+
+
 
     return (
         <div className="main">
@@ -49,8 +59,14 @@ const FullElfbar = () => {
                             <h3>{elfbar.name}</h3>
                             <p className="cost">{elfbar.price} uah</p>
                             <div className="tastes">
-                                <span className="taste_active">Pinapple mango orange</span>
-                                <span className="taste">Kiwi Passionfruit guava</span>
+                                {
+                                    additionalTastes.map(item => {
+                                        return(
+                                            <Link replace={true} to={`/elfbar/${item.slug}/${item.charge}`}><button className={item.taste.name === elfbar.taste.name ? 'taste_active' : 'taste'}>{item.taste.name}</button></Link>
+                                        )
+                                    })
+                                }
+
                             </div>
                             <hr></hr>
                             {

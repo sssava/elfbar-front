@@ -11,7 +11,7 @@ function App() {
       <Routes>
           <Route path="/" element={<MainLayout />}>
               <Route path="" element={<Home />}/>
-              <Route path="elfbar/:slug" element={<FullElfbar />} />
+              <Route path="elfbar/:slug/:charge" element={<FullElfbar />} />
           </Route>
       </Routes>
   );
