@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchFullElf, fetchAddTastes, selectFullElf} from "../redux/slices/fullElfbarSlice";
 import {Link} from "react-router-dom";
@@ -8,11 +8,11 @@ import {Link} from "react-router-dom";
 const FullElfbar = () => {
 
     const [value, setValue] = useState(1)
-    const navigate = useNavigate()
+    const [description, setDescription] = useState(true)
 
     const {slug, charge} = useParams()
     const dispatch = useDispatch()
-    const {elfbar, status, additionalTastes, statusTastes} = useSelector(selectFullElf)
+    const {elfbar, status, additionalTastes} = useSelector(selectFullElf)
 
 
     const onChangeClick = (event) => {
@@ -28,6 +28,14 @@ const FullElfbar = () => {
             setValue(value - 1)
         }
 
+    }
+
+    const handleDescTrue = () => {
+        setDescription(true)
+    }
+
+    const handleDescFalse = () => {
+        setDescription(false)
     }
 
 
@@ -55,7 +63,7 @@ const FullElfbar = () => {
                 ? <div className="elf-info">
                         <img className="info-img" src={elfbar.image} alt="" />
                         <div className="info">
-                            <button className="back"><i className="fa-sharp fa-solid fa-arrow-left"></i> Назад</button>
+                            <Link to="/"><button className="back"><i className="fa-sharp fa-solid fa-arrow-left"></i> Назад</button></Link>
                             <h3>{elfbar.name}</h3>
                             <p className="cost">{elfbar.price} uah</p>
                             <div className="tastes">
@@ -105,29 +113,44 @@ const FullElfbar = () => {
                 status === 'success'
                 ? <div className="elf-description">
                         <div className="titles">
-                            <span className="desc_name active_name">Про Ельфбар</span>
-                            <span className="charact_name">Характеристики</span>
+                            <span className={description === true ? 'desc_name active_name' : 'desc_name'} onClick={handleDescTrue}>Про Ельфбар</span>
+                            <span className={description === false ? 'charact_name active_name' : 'charact_name'} onClick={handleDescFalse}>Характеристики</span>
                         </div>
-                        <div className="description">
-                            <h2>ОДНОРАЗОВА POD СИСТЕМА ELF BAR 2000 LUX Kiwi passion fruit guava</h2>
-                            <p>Електронні сигарети Elf ​​Bar 2000 LUX відрізняє зручність та безпека. Це те, що потрібно
-                                сучасному споживачеві. І причина, через яку вони стали такими популярними в Україні – їхня
-                                безпека порівняно із звичайними тютюновими цигарками. Саме тому швидкі, дешеві та прості
-                                пристрої Elf Bar 2000 LUX Kiwi passion fruit guava призначені для того, щоб допомогти людям
-                                перейти від куріння до вейпінгу. Факти про Elf Bar 2000 LUX Ківі маракуя гуава:
+                        {
+                            description === true ?
+                                <div className="description">
+                                    <h2>{elfbar.name}</h2>
+                                    <p>{elfbar.description}</p>
+                                </div> :
+                                <div className="characteristics">
+                                    <div className="characteristics__type">
+                                        <span className="characteristics__first">Смак</span>
+                                        <span className="characteristics__second">{elfbar.taste.name}</span>
+                                    </div>
+                                    <hr/>
+                                    <div className="characteristics__type">
+                                        <span className="characteristics__first">Кількість затяжок</span>
+                                        <span className="characteristics__second">{elfbar.charge}</span>
+                                    </div>
+                                    <hr/>
+                                    <div className="characteristics__type">
+                                        <span className="characteristics__first">Нікотин</span>
+                                        <span className="characteristics__second">{elfbar.nicotine}</span>
+                                    </div>
+                                    <hr/>
+                                    <div className="characteristics__type">
+                                        <span className="characteristics__first">Ємність аккумулятору</span>
+                                        <span className="characteristics__second">{elfbar.battery}</span>
+                                    </div>
+                                    <hr/>
+                                    <div className="characteristics__type">
+                                        <span className="characteristics__first">Бренд</span>
+                                        <span className="characteristics__second">{elfbar.brand}</span>
+                                    </div>
+                                    <hr/>
 
-                                Вейпінг визнаний найуспішнішим способом відмови від куріння
-                                Одноразові сигарети ElfBar 2000 LUX Ківі маракуя гуава – дешевий та простий спосіб кинути палити
-                                Доведено, що електронні сигарети Elf ​​Bar 2000 LUX Kiwi passion fruit guava принаймні на 95%
-                                безпечніші за горючі тютюнові вироби.
-                                Pod система Elf Bar 2000 LUX – компактний пристрій, усередині якого розташований нагрівач нового
-                                покоління, що рівномірно підігріває і підтримує температуру протягом усієї сесії куріння. Ресурс
-                                одноразової сигарети – 2000 затяжок. Пристрій не обслуговується після завершення всіх затяжок,
-                                підлягає знищенню. Це дуже просто та зручно – купив, відкрив, затягнувся. Безпечно, завдяки
-                                розумному нагрівачеві, який не перегріває курильну суміш, тільки ароматна чиста пара, мінімум
-                                шкідливих речовин. Замовити ElfBar 2000 LUX Kiwi passion fruit guava можна 24/7 на нашому
-                                сайті.</p>
-                        </div>
+                                </div>
+                        }
                     </div>
                     : <div></div>
             }

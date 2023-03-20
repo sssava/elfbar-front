@@ -363,6 +363,27 @@ ul, li {
   color: rgb(107, 95, 95);
 }
 
+.characteristics {
+  display: flex;
+  flex-direction: column;
+  width: 700px;
+  margin: 25px auto;
+}
+
+.characteristics__type {
+  display: flex;
+  justify-content: space-between;
+}
+
+.characteristics__first {
+  font-weight: 700;
+}
+
+.characteristics__second {
+  color: coral;
+  font-weight: 600;
+}
+
 .active_name {
   color: rgb(107, 95, 95);
 }
