@@ -11,7 +11,8 @@ export const fetchElfbars = createAsyncThunk('elfbars/fetchElfbarsStatus', async
 
 const initialState = {
     items: [],
-    status: 'loading'
+    status: 'loading',
+    storage: JSON.parse(localStorage.getItem("elfbars")) || [],
 }
 
 
@@ -21,6 +22,31 @@ const cardSlice = createSlice({
     reducers: {
         setItems(state, action){
             state.items = action.payload
+        },
+        setStorage(state, action){
+            const findItem = state.storage.find((obj) => obj.id === action.payload.id)
+
+            if (findItem){
+                findItem.quantity++
+            }else {
+                state.storage.push({...action.payload, quantity: 1})
+            }
+        },
+        setNewQuan(state, action){
+            const findItem = state.storage.find((obj) => obj.id === action.payload.payload.itemId)
+
+            if (findItem){
+                if(action.payload.payload.newQuan === null){
+                    findItem.quantity = 0
+                }else {
+                    findItem.quantity = parseInt(action.payload.payload.newQuan)
+                }
+
+
+            }
+        },
+        removeFromStorage(state, action){
+            state.storage = state.storage.filter((obj) => obj.id !== action.payload)
         }
     },
 
@@ -41,6 +67,6 @@ const cardSlice = createSlice({
 })
 
 export const selectCardData = (state) => state.card
-export const {setItems} = cardSlice.actions
+export const {setStorage, setNewQuan, removeFromStorage} = cardSlice.actions
 
 export default cardSlice.reducer

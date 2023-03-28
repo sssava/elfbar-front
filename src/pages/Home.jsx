@@ -12,6 +12,8 @@ const Home = () => {
     const {items, status} = useSelector(selectCardData)
     const {searchValue, sort} = useSelector(selectSort)
 
+
+
     useEffect(() => {
         async function fetchData(){
             const ordering = sort.type === 'ordering' ? `?ordering=${sort.sortProperty}` : ''
@@ -23,11 +25,11 @@ const Home = () => {
         }
 
         fetchData()
-    }, [sort])
+    }, [sort, searchValue, dispatch])
 
     const elfbars = items.filter(obj => {
         return obj.name.toLowerCase().includes(searchValue.toLowerCase())
-    }).map(obj => <Card key={obj.id} {...obj} />)
+    }).map(obj => <Card key={obj.id} {...obj} elfbar={obj}/>)
 
     return (
         <div>

@@ -1,13 +1,17 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect, useRef} from 'react';
 import {useDispatch} from "react-redux";
 import debounce from 'lodash.debounce'
 import {Link} from "react-router-dom";
 
 import {setSearchValue} from "../redux/slices/filterSlice";
+import {selectCardData} from "../redux/slices/cardSlice";
+import {useSelector} from "react-redux";
+import {Selector} from "react-redux/es/exports";
 
 const Navbar = () => {
     const [value, setValue] = useState('')
     const dispatch = useDispatch()
+    const isMounted = useRef(false)
 
     const updateSearchValue = useCallback(
         debounce((str) => {
@@ -19,6 +23,16 @@ const Navbar = () => {
         setValue(event.target.value)
         updateSearchValue(event.target.value)
     }
+
+    const {storage} = useSelector(selectCardData)
+
+    useEffect(() => {
+        if(isMounted.current){
+            const json = JSON.stringify(storage)
+            localStorage.setItem("elfbars", json)
+        }
+        isMounted.current = true
+    }, [storage])
 
 
     return (
@@ -34,11 +48,11 @@ const Navbar = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li className="nav-item">
+                            <Link to="cart/"><li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="#"><i className="fa-solid fa-cart-shopping">
                                     <p className="circle"><p className="price">0</p></p>
                                 </i></a>
-                            </li>
+                            </li></Link>
                             <li className="nav-item">
                                 <a className="nav-link" href="#"><i className="fa-regular fa-heart"></i> Favorite</a>
                             </li>

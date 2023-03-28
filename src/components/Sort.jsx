@@ -20,7 +20,6 @@ const Sort = () => {
 
     useEffect(() => {
         const handleVisible = (event) => {
-            console.log(event.composedPath())
             if (!event.composedPath().includes(sortRef.current)){
                 setVisibleSort(false)
             }
