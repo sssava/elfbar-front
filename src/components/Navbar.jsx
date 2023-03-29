@@ -50,7 +50,7 @@ const Navbar = () => {
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <Link to="cart/"><li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="#"><i className="fa-solid fa-cart-shopping">
-                                    <p className="circle"><p className="price">0</p></p>
+                                    <p className="circle"><p className="price">{storage.reduce((total, count) => total + count.quantity, 0)}</p></p>
                                 </i></a>
                             </li></Link>
                             <li className="nav-item">

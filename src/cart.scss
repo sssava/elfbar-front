@@ -134,20 +134,19 @@ label {
 /* Totals section */
 .totals {
   .totals-item {
-    float: right;
+    display: flex;
     clear: both;
     width: 100%;
     margin-bottom: 10px;
 
     label {
-      float: left;
       clear: both;
       width: 79%;
-      text-align: right;
+
     }
 
     .totals-value {
-      float: right;
+
       width: 21%;
       text-align: right;
     }
@@ -155,6 +154,22 @@ label {
 
   .totals-item-total {
     font-family: $font-bold;
+  }
+}
+
+.bottom_cart{
+  display: flex;
+  justify-content: space-between;
+  .shipping{
+    display: flex;
+    flex-direction: column;
+    .shipping_info{
+      width: 100%;
+      margin-bottom: 20px;
+      label{
+        width: 35%;
+      }
+    }
   }
 }
 
