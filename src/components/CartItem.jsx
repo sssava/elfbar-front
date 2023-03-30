@@ -20,7 +20,7 @@ const CartItem = ({item, onChangeQuantity, removeItem}) => {
             </div>
             <div className="product-details">
                 <div className="product-title">{item.name}</div>
-                <p className="product-description">{item.description}</p>
+                <p className="product-description">{item.description.slice(0, 250)}...</p>
             </div>
             <div className="product-price">{item.price}</div>
             <div className="product-quantity">

@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 import {setSearchValue} from "../redux/slices/filterSlice";
 import {selectCardData} from "../redux/slices/cardSlice";
 import {useSelector} from "react-redux";
-import {Selector} from "react-redux/es/exports";
 
 const Navbar = () => {
     const [value, setValue] = useState('')

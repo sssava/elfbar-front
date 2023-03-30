@@ -1,11 +1,13 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {setNewQuan, removeFromStorage} from "../redux/slices/cardSlice";
+import {setNewQuan, removeFromStorage, clearStorage} from "../redux/slices/cardSlice";
 import CartItem from "../components/CartItem";
 import {selectCardData} from "../redux/slices/cardSlice";
 import {cartData} from "../redux/slices/cartSlice";
 import {setName, setSurname, setPostal_Code} from "../redux/slices/cartSlice";
 import axios from "axios";
+import empty from "../images/empty-cart.png"
+import {Link} from "react-router-dom";
 
 const Cart = () => {
 
@@ -15,6 +17,7 @@ const Cart = () => {
 
 
     const total = storage.reduce((total, current) => total + current.quantity * current.price, 0)
+    const totalCartItems = storage.reduce((total, count) => total + count.quantity, 0)
 
 
     const onChangeQuantity = (id, newQuan) => {
@@ -63,6 +66,8 @@ const Cart = () => {
 
         try {
             const {data} = await axios.post("http://127.0.0.1:8000/api/create_order/", order)
+            localStorage.removeItem("elfbars")
+            dispatch(clearStorage())
             console.log(data)
         } catch (error){
             console.log(error)
@@ -75,7 +80,7 @@ const Cart = () => {
         <div className="cart">
             <h1>Shopping Cart</h1>
 
-            <div className="shopping-cart">
+            {totalCartItems > 0 ? <div className="shopping-cart">
 
                 <div className="column-labels">
                     <label className="product-image">Image</label>
@@ -92,7 +97,7 @@ const Cart = () => {
                     )
                 })}
 
-                <form onSubmit={createOrder}>
+                <form onSubmit={createOrder} action="/cart">
                     <div className="bottom_cart">
                         <div className="shipping">
                             <div className="shipping_info">
@@ -105,34 +110,35 @@ const Cart = () => {
                             </div>
                             <div className="shipping_info">
                                 <label>Postal Code</label>
-                                <input placeholder="postal code..." type="text" value={postal_code} onChange={postal_codeSetter} required={true}/>
+                                <input placeholder="postal code..." type="number" value={postal_code} onChange={postal_codeSetter} required={true}/>
                             </div>
                         </div>
                         <div className="totals">
                             <div className="totals-item">
-                                <label>Subtotal</label>
-                                <div className="totals-value" id="cart-subtotal">71.97</div>
-                            </div>
-                            <div className="totals-item">
-                                <label>Tax (5%)</label>
-                                <div className="totals-value" id="cart-tax">3.60</div>
+                                <label>Count Items</label>
+                                <div className="totals-value" id="cart-subtotal">{totalCartItems}</div>
                             </div>
                             <div className="totals-item">
                                 <label>Shipping</label>
-                                <div className="totals-value" id="cart-shipping">15.00</div>
+                                <div className="totals-value" id="cart-shipping">Free</div>
                             </div>
                             <div className="totals-item totals-item-total">
                                 <label>Grand Total</label>
-                                <div className="totals-value" id="cart-total">{total}</div>
+                                <div className="totals-value" id="cart-total">{total} UAH</div>
                             </div>
                         </div>
                     </div>
                     <button type="submit" className="checkout">Checkout</button>
                 </form>
 
-
-
+            </div> :
+            <div className="empty_cart">
+                <h2>Your Cart is empty now</h2>
+                <h5>Add some products to create an order</h5>
+                <img className="empty_img" src={empty} alt="empty"/>
+                <Link to="/"><button>Go back</button></Link>
             </div>
+            }
         </div>
     );
 };

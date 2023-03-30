@@ -42,7 +42,7 @@ $font-bold: 'HelveticaNeue-Medium', 'Helvetica Neue Medium';
 
 
 /* Apply dollar signs */
-.product .product-price:after, .product .product-line-price:after, .totals-value:after {
+.product .product-price:after, .product .product-line-price:after {
   content: ' UAH';
 }
 
@@ -133,6 +133,7 @@ label {
 
 /* Totals section */
 .totals {
+  margin-right: 10px;
   .totals-item {
     display: flex;
     clear: both;
@@ -147,7 +148,7 @@ label {
 
     .totals-value {
 
-      width: 21%;
+      width: 120px;
       text-align: right;
     }
   }
@@ -271,5 +272,25 @@ label {
         width: 40%;
       }
     }
+  }
+}
+
+.empty_cart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .empty_img{
+    height: 480px;
+  }
+  button{
+    background-color: orange;
+    border-radius: 10px;
+    width: 150px;
+    height: 40px;
+    border: none;
+  }
+  button:hover{
+    background-color: darkgoldenrod;
   }
 }
