@@ -4,7 +4,7 @@ const initialState = {
     searchValue: '',
     sort: {
         name: 'Немає сортування',
-        sortProperty: '',
+        sortProperty: '-taste__count_in_stock',
         type: 'ordering'
     }
 }

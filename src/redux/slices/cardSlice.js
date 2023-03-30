@@ -32,17 +32,28 @@ const cardSlice = createSlice({
                 state.storage.push({...action.payload, quantity: 1})
             }
         },
-        setNewQuan(state, action){
+        setQuan(state, action){
             const findItem = state.storage.find((obj) => obj.id === action.payload.payload.itemId)
 
             if (findItem){
-                if(action.payload.payload.newQuan === null){
-                    findItem.quantity = 0
-                }else {
-                    findItem.quantity = parseInt(action.payload.payload.newQuan)
-                }
+                findItem.quantity = Number.parseInt(action.payload.payload.newQuan)
+
+            }
+        },
+        setPlusQuan(state, action){
+            const findItem = state.storage.find((obj) => obj.id === action.payload.payload.itemId)
+
+            if (findItem){
+                findItem.quantity++
 
 
+            }
+        },
+        setMinusQuan(state, action) {
+            const findItem = state.storage.find((obj) => obj.id === action.payload.payload.itemId)
+
+            if (findItem) {
+                findItem.quantity--
             }
         },
         removeFromStorage(state, action){
@@ -70,6 +81,6 @@ const cardSlice = createSlice({
 })
 
 export const selectCardData = (state) => state.card
-export const {setStorage, setNewQuan, removeFromStorage, clearStorage} = cardSlice.actions
+export const {setStorage, setPlusQuan, setMinusQuan, setQuan, removeFromStorage, clearStorage} = cardSlice.actions
 
 export default cardSlice.reducer

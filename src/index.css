@@ -69,12 +69,14 @@ body{
   background-color: rgb(172, 172, 242);
   width: auto;
   border-radius: 10px;
+
 }
 
 .category p {
   display: flex;
   justify-content: center;
   text-transform: uppercase;
+
 }
 
 .item-price {
@@ -93,6 +95,19 @@ body{
 
 }
 
+.cart-container__not_in_stock{
+  background-color: orangered;
+  width: 80px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-container__not_in_stock p{
+  margin-top: 10px;
+}
 
 .button-cart {
   border: none;
@@ -108,7 +123,8 @@ body{
 }
 
 .card-text {
-
+  height: 20px;
+  margin-bottom: 25px;
 }
 
 .fav-button {

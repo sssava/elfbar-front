@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {setStorage} from "../redux/slices/cardSlice";
 
 
@@ -31,9 +31,14 @@ const Card = ({id, taste, name, price, charge, image, slug, elfbar}) => {
                     </div>
                     <div className="item-cart d-flex justify-content-between">
                         <p className="item-price">{price} uah</p>
-                        <button className="button-cart" onClick={addToLocalStorage}>
-                            <div className="cart-container"><i className="fa-solid fa-cart-shopping"></i></div>
-                        </button>
+                        {taste.count_in_stock > 0 ?
+                            <button className="button-cart" onClick={addToLocalStorage}>
+                                <div className="cart-container"><i className="fa-solid fa-cart-shopping"></i></div>
+                            </button> :
+                            <button disabled={true} className="button-cart" onClick={addToLocalStorage}>
+                                <div className="cart-container__not_in_stock"><p>not in stock</p></div>
+                            </button>
+                        }
                     </div>
                 </div>
             </div>

@@ -1,12 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
-const CartItem = ({item, onChangeQuantity, removeItem}) => {
+const CartItem = ({item, onPlusQuantity, removeItem, onMinusQuan, onSetQuan}) => {
     const [quantity, setQuantity] = useState(item.quantity)
 
-    const changeQuantity = (event) => {
-        const newQuantity = event.target.value
-        setQuantity(newQuantity)
-        onChangeQuantity(item.id, newQuantity)
+    const plusQuantity = (event) => {
+        if(event.key === "ArrowUp"){
+            setQuantity(prev => prev += 1)
+            onPlusQuantity(item.id)
+        }
+    }
+
+    const minusQuan = (event) => {
+        if(event.key === "ArrowDown"){
+            setQuantity(prev => prev -= 1)
+            onMinusQuan(item.id)
+        }
+    }
+
+    const addQuan = (event) => {
+        const newQuan = event.target.value
+        setQuantity(event.target.value)
+        onSetQuan(item.id, newQuan)
     }
 
     const deleteItem = (id) => {
@@ -16,7 +30,7 @@ const CartItem = ({item, onChangeQuantity, removeItem}) => {
     return (
         <div className="product">
             <div className="product-image">
-                <img src={item.image}/>
+                <img src={item.image} alt="product"/>
             </div>
             <div className="product-details">
                 <div className="product-title">{item.name}</div>
@@ -24,7 +38,7 @@ const CartItem = ({item, onChangeQuantity, removeItem}) => {
             </div>
             <div className="product-price">{item.price}</div>
             <div className="product-quantity">
-                <input onChange={changeQuantity} type="number" value={quantity} min="1"/>
+                <input onChange={addQuan} onKeyDown={minusQuan} onKeyUp={plusQuantity} type="number" value={quantity} min="1"/>
             </div>
             <div className="product-removal">
                 <button onClick={deleteItem} className="remove-product">

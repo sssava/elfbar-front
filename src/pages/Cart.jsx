@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {setNewQuan, removeFromStorage, clearStorage} from "../redux/slices/cardSlice";
+import {setPlusQuan, removeFromStorage, clearStorage, setMinusQuan, setQuan} from "../redux/slices/cardSlice";
 import CartItem from "../components/CartItem";
 import {selectCardData} from "../redux/slices/cardSlice";
 import {cartData} from "../redux/slices/cartSlice";
@@ -12,7 +12,7 @@ import {Link} from "react-router-dom";
 const Cart = () => {
 
     const dispatch = useDispatch()
-    const {storage} = useSelector(selectCardData)
+    const {storage, items} = useSelector(selectCardData)
     const {name, surname, postal_code} = useSelector(cartData)
 
 
@@ -20,7 +20,27 @@ const Cart = () => {
     const totalCartItems = storage.reduce((total, count) => total + count.quantity, 0)
 
 
-    const onChangeQuantity = (id, newQuan) => {
+    const onPlusQuantity = (id) => {
+        const action = {
+            payload: {
+                itemId: id,
+            }
+        }
+
+        dispatch(setPlusQuan(action))
+    }
+
+    const onMinusQuan = (id) => {
+        const action = {
+            payload: {
+                itemId: id,
+            }
+        }
+
+        dispatch(setMinusQuan(action))
+    }
+
+    const onSetQuan = (id, newQuan) => {
         const action = {
             payload: {
                 itemId: id,
@@ -28,8 +48,7 @@ const Cart = () => {
             }
         }
 
-        dispatch(setNewQuan(action))
-        console.log(storage)
+        dispatch(setQuan(action))
     }
 
     const removeItem = (id) => {
@@ -64,7 +83,23 @@ const Cart = () => {
         }
         console.log(order)
 
+        function Exeption(message){
+            this.message = message
+        }
+
         try {
+            for(let item in items){
+                for(let obj in storage){
+                    if(items[item].id === storage[obj].id){
+                        console.log(storage[obj].quantity, items[item].taste.count_in_stock)
+                        if(storage[obj].quantity > items[item].taste.count_in_stock){
+                            alert("wrong count")
+                            throw Exeption("wrong count of elfbar, count in stock not enough");
+                            break;
+                        }
+                    }
+                }
+            }
             const {data} = await axios.post("http://127.0.0.1:8000/api/create_order/", order)
             localStorage.removeItem("elfbars")
             dispatch(clearStorage())
@@ -93,7 +128,7 @@ const Cart = () => {
 
                 {storage.map((item) => {
                     return(
-                        <CartItem item={item} onChangeQuantity={onChangeQuantity} removeItem={removeItem}/>
+                        <CartItem item={item} onPlusQuantity={onPlusQuantity} removeItem={removeItem} onMinusQuan={onMinusQuan} onSetQuan={onSetQuan}/>
                     )
                 })}
 
