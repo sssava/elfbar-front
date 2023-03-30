@@ -101,14 +101,12 @@ const Cart = () => {
                 }
             }
             const {data} = await axios.post("http://127.0.0.1:8000/api/create_order/", order)
-            localStorage.removeItem("elfbars")
-            dispatch(clearStorage())
+            localStorage.clear()
+            dispatch(clearStorage([]))
             console.log(data)
         } catch (error){
             console.log(error)
         }
-
-
     }
 
     return (

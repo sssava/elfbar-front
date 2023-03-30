@@ -59,8 +59,8 @@ const cardSlice = createSlice({
         removeFromStorage(state, action){
             state.storage = state.storage.filter((obj) => obj.id !== action.payload)
         },
-        clearStorage(state){
-            state.storage = []
+        clearStorage(state, action){
+            state.storage = action.payload
         }
     },
 
