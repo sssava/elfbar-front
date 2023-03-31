@@ -105,6 +105,7 @@ body{
   align-items: center;
 }
 
+
 .cart-container__not_in_stock p{
   margin-top: 10px;
 }
@@ -331,6 +332,16 @@ ul, li {
 
 .add_to_cart:hover {
   background-color: rgb(177, 120, 13);
+}
+
+.already__in__cart{
+  margin-left: 20px;
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  border: none;
 }
 
 .in_liked {

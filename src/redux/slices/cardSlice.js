@@ -32,6 +32,18 @@ const cardSlice = createSlice({
                 state.storage.push({...action.payload, quantity: 1})
             }
         },
+        addToCartByQuantity(state, action){
+            console.log(action.payload)
+            const findItem = state.storage.find((obj) => obj.id === action.payload.payload.id)
+            if (!findItem){
+                state.storage.push({
+                    ...action.payload.payload.elf,
+                    quantity: action.payload.payload.quan
+
+                })
+            }
+
+        },
         setQuan(state, action){
             const findItem = state.storage.find((obj) => obj.id === action.payload.payload.itemId)
 
@@ -81,6 +93,6 @@ const cardSlice = createSlice({
 })
 
 export const selectCardData = (state) => state.card
-export const {setStorage, setPlusQuan, setMinusQuan, setQuan, removeFromStorage, clearStorage} = cardSlice.actions
+export const {setStorage, setPlusQuan, setMinusQuan, setQuan, removeFromStorage, clearStorage, addToCartByQuantity} = cardSlice.actions
 
 export default cardSlice.reducer

@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchFullElf, fetchAddTastes, selectFullElf} from "../redux/slices/fullElfbarSlice";
 import {Link} from "react-router-dom";
+import {selectCardData, addToCartByQuantity} from "../redux/slices/cardSlice";
 
 
 const FullElfbar = () => {
@@ -13,6 +14,8 @@ const FullElfbar = () => {
     const {slug, charge} = useParams()
     const dispatch = useDispatch()
     const {elfbar, status, additionalTastes} = useSelector(selectFullElf)
+    const {storage} = useSelector(selectCardData)
+    const checkItemInCart = storage.find((obj) => obj.id === elfbar.id)
 
 
     const onChangeClick = (event) => {
@@ -38,6 +41,18 @@ const FullElfbar = () => {
         setDescription(false)
     }
 
+    const addToCart = () => {
+        const action = {
+            payload: {
+                id: elfbar.id,
+                quan: value,
+                elf: elfbar,
+            }
+        }
+        console.log(action)
+        dispatch(addToCartByQuantity(action))
+    }
+
 
     useEffect(() => {
         async function fetchData(){
@@ -52,7 +67,7 @@ const FullElfbar = () => {
         fetchData()
 
 
-    }, [slug, charge])
+    }, [slug, charge, dispatch])
 
 
 
@@ -91,7 +106,11 @@ const FullElfbar = () => {
                                         <input type="number" min="1" value={value} onChange={onChangeClick}></input>
                                         <button onClick={onClickPlus}><i className="fa-solid fa-plus"></i></button>
                                     </div>
-                                    <button className="add_to_cart">Додати в кошик</button>
+                                        {checkItemInCart ?
+                                            <Link to="/cart"><button className="already__in__cart">У кошику</button></Link> :
+                                            <button onClick={addToCart} className="add_to_cart">Додати в кошик</button>
+                                        }
+
                                   </div>
 
                                 : <div className="in_cart">
