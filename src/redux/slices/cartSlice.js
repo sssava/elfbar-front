@@ -19,7 +19,7 @@ const cartSlice = createSlice({
         },
         setPostal_Code(state, action){
             state.postal_code = action.payload
-        }
+        },
     }
 })
 

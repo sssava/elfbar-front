@@ -95,6 +95,16 @@ body{
 
 }
 
+.cart-container__in__cart{
+  background-color: limegreen;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .cart-container__not_in_stock{
   background-color: orangered;
   width: 80px;
@@ -426,4 +436,25 @@ ul, li {
   border: none;
   background-color: white;
   font-size: 8px;
+}
+
+.order_created{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.created_butt{
+  border: none;
+  background-color: #92e7de;
+  border-radius: 10px;
+  width: 100px;
+  height: 30px;
+  margin-top: 40px;
+}
+
+.created_butt:hover{
+  background-color: #65e7d8;
 }

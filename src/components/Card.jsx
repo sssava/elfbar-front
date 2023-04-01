@@ -1,13 +1,16 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setStorage} from "../redux/slices/cardSlice";
-
+import {selectCardData} from "../redux/slices/cardSlice";
 
 
 const Card = ({id, taste, name, price, charge, image, slug, elfbar}) => {
 
     const dispatch = useDispatch()
+    const {storage} = useSelector(selectCardData)
+
+    const checkElfInCart = storage.find((obj) => obj.id === id)
 
 
     function addToLocalStorage() {
@@ -32,8 +35,9 @@ const Card = ({id, taste, name, price, charge, image, slug, elfbar}) => {
                     <div className="item-cart d-flex justify-content-between">
                         <p className="item-price">{price} uah</p>
                         {taste.count_in_stock > 0 ?
-                            <button className="button-cart" onClick={addToLocalStorage}>
-                                <div className="cart-container"><i className="fa-solid fa-cart-shopping"></i></div>
+                            <button disabled={checkElfInCart ? true : false} className="button-cart" onClick={addToLocalStorage}>
+                                <div className={checkElfInCart ? "cart-container__in__cart" : "cart-container"}>{checkElfInCart ?
+                                    <i className="fa-solid fa-check"></i> : <i className="fa-solid fa-cart-shopping"></i>}</div>
                             </button> :
                             <button disabled={true} className="button-cart" onClick={addToLocalStorage}>
                                 <div className="cart-container__not_in_stock"><p>not in stock</p></div>
