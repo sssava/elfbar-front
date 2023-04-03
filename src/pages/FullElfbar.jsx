@@ -19,7 +19,7 @@ const FullElfbar = () => {
 
 
     const onChangeClick = (event) => {
-        setValue(event.target.value)
+        setValue(parseInt(event.target.value))
     }
 
     const onClickPlus = () => {

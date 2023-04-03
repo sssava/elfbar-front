@@ -4,7 +4,7 @@ import {setPlusQuan, removeFromStorage, clearStorage, setMinusQuan, setQuan} fro
 import CartItem from "../components/CartItem";
 import {selectCardData} from "../redux/slices/cardSlice";
 import {cartData} from "../redux/slices/cartSlice";
-import {setName, setSurname, setPostal_Code} from "../redux/slices/cartSlice";
+import {setName, setSurname, setPostal_Code, updateTaste} from "../redux/slices/cartSlice";
 import axios from "axios";
 import empty from "../images/empty-cart.png"
 import {Link} from "react-router-dom";
@@ -69,6 +69,23 @@ const Cart = () => {
         dispatch(setPostal_Code(event.target.value))
     }
 
+
+    function putDataTastes(){
+        for (let i = 0; i < storage.length; i++){
+            const id = storage[i].taste.id
+            const taste = {
+                "name": storage[i].taste.name,
+                "count_in_stock": storage[i].taste.count_in_stock - storage[i].quantity,
+                "slug": storage[i].taste.slug
+            }
+            dispatch(updateTaste({
+                id,
+                taste,
+            }))
+        }
+    }
+
+
     const createOrder = async (event) => {
         const order = {
             "name": name,
@@ -105,6 +122,7 @@ const Cart = () => {
             localStorage.clear()
             dispatch(clearStorage([]))
             const {data} = await axios.post("http://127.0.0.1:8000/api/create_order/", order)
+            putDataTastes()
             setSuccess(true)
             dispatch(setName(""))
             dispatch(setSurname(""))
