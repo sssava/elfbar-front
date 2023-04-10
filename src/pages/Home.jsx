@@ -37,7 +37,7 @@ const Home = () => {
             <Sort/>
             <div>
                 <div className="container mb-5">
-                    <div className="row">
+                    <div className="row justify-content-center">
                         {
                             status === 'loading'
                                 ? [...new Array(8)].map((item, index) => <Skeleton key={index}/>)

@@ -6,8 +6,6 @@ body{
   font-family: 'Nunito';
 }
 
-
-
 .carousel {
   height: 400px;
   margin: 0 200px;
@@ -457,4 +455,32 @@ ul, li {
 
 .created_butt:hover{
   background-color: #65e7d8;
+}
+
+
+.custom-img{
+  color: white;
+}
+
+.card{
+  width: 300px;
+}
+
+@media (max-width: 650px) {
+  .container{
+    max-width: 450px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container{
+    max-width: 300px;
+  }
+}
+
+
+@media (max-width: 470px) {
+  .container{
+    max-width: 300px;
+  }
 }

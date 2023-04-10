@@ -19,8 +19,8 @@ const Card = ({id, taste, name, price, charge, image, slug, elfbar}) => {
     }
 
     return (
-        <div className="col-3">
-            <div className="card" style={{width: 300}}>
+        <div className="col-lg-4 col-md-6 col-xl-4 col-xxl-3 col-sm-8 col-12 mb-3">
+            <div className="card">
                 <div className="d-flex fav">
                     <button className="fav-button"><i className="fa-solid fa-heart"></i></button>
                 </div>

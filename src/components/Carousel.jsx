@@ -8,10 +8,10 @@ const Carousel = () => {
             <div id="carouselExample" className="carousel slide mt-5 mb-4">
                 <div className="carousel-inner">
                     <div className="carousel-item active">
-                        <img src={elf1} className="d-block w-100" alt="elf"/>
+                        <img src={elf1} className="d-block w-100 test" alt="elf"/>
                     </div>
                     <div className="carousel-item">
-                        <img src={elf} className="d-block w-100" alt="..."/>
+                        <img src={elf} className="d-block w-100 test" alt="..."/>
                     </div>
                 </div>
                 <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
