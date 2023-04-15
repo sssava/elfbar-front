@@ -239,11 +239,11 @@ ul, li {
 
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 850px) {
 }
 
 .back {
-  width: 100px;
+  max-width: 100px;
   background-color: orange;
   color: white;
   border-radius: 10px;
@@ -253,27 +253,28 @@ ul, li {
 
 
 .info-img {
-  width: 50%;
-  height: 100%;
+  max-width: 50%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 .info {
   width: 48%;
   display: flex;
   flex-direction: column;
-  padding: 20px 0 0 100px;
+  padding: 1.5% 0 0 5%;
 }
 
 .info h3 {
-  width: 40vh;
+  width: 50%;
   font-weight: 600;
 }
 
 .cost {
   font-size: 30px;
   font-weight: 800;
-  margin-top: 15px;
-  margin-bottom: 30px;
+  margin-top: 1.2%;
+  margin-bottom: 3.3%;
 }
 
 .tastes button {
@@ -324,6 +325,8 @@ ul, li {
 .in_cart {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .in_cart__count {
@@ -331,12 +334,13 @@ ul, li {
   border: 2px solid rgb(200, 197, 197);
   width: 105px;
   border-radius: 5px;
+  margin-right: 20px;
 }
 
 .in_cart__count input {
   display: inline-block;
   border: none;
-  max-width: 35px;
+  max-width: 45%;
   margin: 0;
   appearance: none;
   padding: 0;
@@ -359,8 +363,14 @@ ul, li {
   background-color: rgb(177, 120, 13);
 }
 
+@media (max-width: 500px) {
+  .already__in__cart{
+    margin-top: 20px;
+  }
+}
+
 .already__in__cart{
-  margin-left: 20px;
+
   background-color: green;
   color: white;
   border-radius: 10px;
@@ -378,9 +388,6 @@ ul, li {
 .in_liked i {
   color: orange;
 }
-
-
-
 
 
 .titles {
@@ -412,7 +419,7 @@ ul, li {
 .characteristics {
   display: flex;
   flex-direction: column;
-  width: 700px;
+  width: 70%;
   margin: 25px auto;
 }
 
